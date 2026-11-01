@@ -201,6 +201,8 @@ function Framework.Thread.destroyAll()
 end
 
 function Framework.MemRecs.disable(memrec)
+  assert( memrec ~= nil, 'memrec must be valid' )
+  assert( memrec.getClassName and memrec.getClassName() == 'TMemoryRecord', 'not a memrec' )
   createTimer( 250, function() memrec.Active = false end )
 end
 
