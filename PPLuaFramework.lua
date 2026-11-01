@@ -201,7 +201,7 @@ function Framework.Thread.destroyAll()
 end
 
 function Framework.MemRecs.disable(memrec)
-  createTimer( 200, function() memrec.Enabled = false end )
+  createTimer( 250, function() memrec.Active = false end )
 end
 
 function Framework.MemRecs.toggleFlag(memrec, flag, description, onValue, offValue)
@@ -566,5 +566,6 @@ for functionName, implementation in pairs(Framework.API) do
 
 end
 
-Framework.CEHelper.addCompactMenu()
+synchronize(function() Framework.CEHelper.addCompactMenu() end)
+
 package.loaded[ FRAMEWORK_KEY ] = Framework
